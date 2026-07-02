@@ -1,40 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Story 💖</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daydream for You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@300;400;600;700;800&family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<div class="game-container">
-
-  <div class="story-box">
-
-    <h2 id="title">Chapter 1</h2>
-
-    <p id="story"></p>
-
-    <!-- PUZZLE -->
-    <div class="puzzle" id="puzzle">
-      <button onclick="solvePuzzle()">💖 click me</button>
-    </div>
-
-    <!-- CHOICES -->
-    <div class="choices" id="choices" style="display:none;">
-      <button onclick="nextScene(2)">lanjut cerita</button>
-      <button onclick="loveReaction()">aku bingung 😳</button>
-    </div>
-
-    <!-- NEXT BUTTON -->
-    <button id="nextBtn" onclick="nextScene(1)">next</button>
-
+  <div class="noise"></div>
+  <div class="sky">
+    <span class="cloud cloud-1"></span>
+    <span class="cloud cloud-2"></span>
+    <span class="cloud cloud-3"></span>
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
+    <span class="bubble b3"></span>
+    <span class="bubble b4"></span>
+    <span class="paint-heart h1">♡</span>
+    <span class="paint-heart h2">♡</span>
+    <span class="paint-heart h3">♡</span>
   </div>
 
-</div>
+  <section id="gate" class="gate">
+    <div class="flower-wall left"></div>
+    <div class="flower-wall right"></div>
 
-<script src="script.js"></script>
+    <div class="lock-card" id="lockCard">
+      <p class="tiny-label">a tiny game before the story</p>
+      <h1>unlock<br>the daydream</h1>
+      <p class="soft">collect all blue hearts, then enter the code.</p>
+
+      <div class="heart-hunt" aria-label="collect hearts">
+        <button class="hunt-heart p1" data-num="1" aria-label="heart piece 1">💙</button>
+        <button class="hunt-heart p2" data-num="4" aria-label="heart piece 2">💙</button>
+        <button class="hunt-heart p3" data-num="3" aria-label="heart piece 3">💙</button>
+      </div>
+
+      <div class="hint-row">
+        <span id="hint1">?</span><span id="hint2">?</span><span id="hint3">?</span>
+      </div>
+
+      <div class="display" id="display">code</div>
+
+      <div class="keypad">
+        <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+        <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+        <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+        <button data-key="clear">×</button><button data-key="0">0</button><button data-key="enter">✓</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="curtain" class="curtain" aria-hidden="true">
+    <div class="curtain-flower c1"></div>
+    <div class="curtain-flower c2"></div>
+    <div class="curtain-flower c3"></div>
+  </div>
+
+  <main id="main" class="main">
+    <section class="scene hero reveal">
+      <div class="hero-copy">
+        <p class="tiny-label">for someone special</p>
+        <h2>for<br><span id="personName">you</span></h2>
+        <p>scroll pelan-pelan ya, ada beberapa memori kecil yang harus kamu buka.</p>
+        <button class="pill-btn" id="nameBtn">custom nama</button>
+      </div>
+      <div class="floating-lock">🔒</div>
+    </section>
+
+    <section class="scene music-scene reveal">
+      <div class="music-card">
+        <div class="album"></div>
+        <div class="track">
+          <p class="tiny-label">now playing</p>
+          <h3>3 Strikes</h3>
+          <p>A daydream about us</p>
+          <div class="progress"><span></span></div>
+        </div>
+        <button class="play" id="playBtn" aria-label="play fake music">▶</button>
+      </div>
+      <p class="caption">musik ini dummy dulu, nanti bisa kamu ganti mp3 sendiri.</p>
+    </section>
+
+    <section class="scene flower-scene reveal">
+      <h2 class="script">a little flower for you</h2>
+      <p class="wide-text">ada hari yang rasanya biasa aja, tapi tiba-tiba jadi bagus cuma karena kamu ada di situ.</p>
+      <div class="bouquet">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <section class="scene photo-scene reveal">
+      <div class="section-head">
+        <p class="tiny-label">photocard corner</p>
+        <h2>memories</h2>
+      </div>
+      <div class="polaroids">
+        <article class="polaroid r1">
+          <div class="photo placeholder one">foto 1</div>
+          <p>the softest day</p>
+        </article>
+        <article class="polaroid r2">
+          <div class="photo placeholder two">foto 2</div>
+          <p>little us</p>
+        </article>
+        <article class="polaroid r3">
+          <div class="photo placeholder three">foto 3</div>
+          <p>favorite smile</p>
+        </article>
+      </div>
+      <p class="caption">ganti tulisan “foto 1/2/3” pakai foto kalian nanti.</p>
+    </section>
+
+    <section class="scene puzzle-scene reveal">
+      <div class="section-head">
+        <p class="tiny-label">second game</p>
+        <h2>memory match</h2>
+      </div>
+      <p class="wide-text">cocokin kartu sampai semua kebuka. kalau selesai, surat terakhir kebuka.</p>
+      <div class="match-grid" id="matchGrid"></div>
+      <p id="matchStatus" class="caption">matched: 0/6</p>
+    </section>
+
+    <section class="scene map-scene reveal">
+      <div class="map-card">
+        <p class="tiny-label">memory map</p>
+        <h2>where my heart goes</h2>
+        <div class="map-box">
+          <span class="pin a">♡</span>
+          <span class="pin b">♡</span>
+          <span class="pin c">♡</span>
+          <svg viewBox="0 0 420 230" preserveAspectRatio="none">
+            <path d="M40 170 C120 40, 210 210, 380 60" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene letter-scene reveal">
+      <p class="tiny-label">final message</p>
+      <h2 class="script">open this when you're ready</h2>
+      <button class="pill-btn locked" id="letterBtn" disabled>finish the memory match first</button>
+      <div class="letter" id="letter">
+        <p id="letterText"></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="name-modal" id="nameModal">
+    <div class="name-box">
+      <h3>nama pacar lu</h3>
+      <input id="nameInput" type="text" placeholder="contoh: jaja" />
+      <button id="saveName">save</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
