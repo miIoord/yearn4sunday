@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story 💖</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game-container">
+
+  <div class="story-box">
+
+    <h2 id="title">Chapter 1</h2>
+
+    <p id="story"></p>
+
+    <!-- PUZZLE -->
+    <div class="puzzle" id="puzzle">
+      <button onclick="solvePuzzle()">💖 click me</button>
+    </div>
+
+    <!-- CHOICES -->
+    <div class="choices" id="choices" style="display:none;">
+      <button onclick="nextScene(2)">lanjut cerita</button>
+      <button onclick="loveReaction()">aku bingung 😳</button>
+    </div>
+
+    <!-- NEXT BUTTON -->
+    <button id="nextBtn" onclick="nextScene(1)">next</button>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
