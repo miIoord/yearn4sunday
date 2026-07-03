@@ -28,28 +28,50 @@
     <div class="flower-wall left"></div>
     <div class="flower-wall right"></div>
 
-    <div class="lock-card" id="lockCard">
-      <p class="tiny-label">a tiny game before the story</p>
-      <h1>unlock<br>the daydream</h1>
-      <p class="soft">collect all blue hearts, then enter the code.</p>
+    <div class="gate-layout">
+      <!-- FOTO PAGE PALING ATAS: ganti src foto di bawah ini -->
+      <figure class="opening-photo-card">
+        <div class="manual-photo opening-photo">
+          <img src="assets/opening-sunday.jpg" alt="Sunday opening photo" onerror="this.style.display='none'">
+          <span>add opening photo</span>
+        </div>
+        <figcaption>before our little story begins ♡</figcaption>
+      </figure>
 
-      <div class="heart-hunt" aria-label="collect hearts">
-        <button class="hunt-heart p1" data-num="1" aria-label="heart piece 1">💙</button>
-        <button class="hunt-heart p2" data-num="4" aria-label="heart piece 2">💙</button>
-        <button class="hunt-heart p3" data-num="3" aria-label="heart piece 3">💙</button>
-      </div>
+      <div class="lock-card lock-card-new" id="lockCard">
+        <p class="tiny-label">a tiny love lock</p>
+        <h1>unlock<br>our daydream</h1>
+        <p class="soft">collect all 3 loves first. the clue will show up after that.</p>
 
-      <div class="hint-row">
-        <span id="hint1">?</span><span id="hint2">?</span><span id="hint3">?</span>
-      </div>
+        <div class="heart-hunt" aria-label="collect hearts">
+          <button class="hunt-heart p1" aria-label="love piece 1">💙</button>
+          <button class="hunt-heart p2" aria-label="love piece 2">🩷</button>
+          <button class="hunt-heart p3" aria-label="love piece 3">💜</button>
+        </div>
 
-      <div class="display" id="display">code</div>
+        <div class="love-progress" aria-label="love collection progress">
+          <span id="love1">♡</span>
+          <span id="love2">♡</span>
+          <span id="love3">♡</span>
+        </div>
 
-      <div class="keypad">
-        <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
-        <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
-        <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
-        <button data-key="clear">×</button><button data-key="0">0</button><button data-key="enter">✓</button>
+        <div class="clue-box" id="clueBox">
+          <span class="clue-icon">🔒</span>
+          <p id="clueText">clue locked — collect 3 loves</p>
+        </div>
+
+        <div class="code-dots" id="codeDots" aria-label="4 digit passcode">
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="display" id="display" aria-live="polite">enter 4 digits</div>
+
+        <div class="keypad keypad-new">
+          <button data-key="1">1</button><button data-key="2">2</button><button data-key="3">3</button>
+          <button data-key="4">4</button><button data-key="5">5</button><button data-key="6">6</button>
+          <button data-key="7">7</button><button data-key="8">8</button><button data-key="9">9</button>
+          <button data-key="clear">clear</button><button data-key="0">0</button><button data-key="enter">♡</button>
+        </div>
       </div>
     </div>
   </section>
@@ -60,20 +82,69 @@
     <div class="curtain-flower c3"></div>
   </div>
 
+  <section id="giftScene" class="gift-scene" aria-hidden="true">
+    <div class="flower-wall left"></div>
+    <div class="flower-wall right"></div>
+
+    <div class="gift-page-card">
+      <p class="tiny-label">passcode accepted</p>
+      <h2>one more thing...</h2>
+      <p class="gift-copy">there's a tiny present waiting for Sunday.</p>
+
+      <button class="gift-box" id="giftBox" aria-label="open the gift">
+        <span class="gift-lid"></span>
+        <span class="gift-body"></span>
+        <span class="gift-ribbon vertical"></span>
+        <span class="gift-ribbon horizontal"></span>
+        <span class="gift-bow bow-left"></span>
+        <span class="gift-bow bow-right"></span>
+        <span class="gift-spark gs1">✦</span>
+        <span class="gift-spark gs2">🌸</span>
+        <span class="gift-spark gs3">♡</span>
+        <span class="gift-spark gs4">🩵</span>
+      </button>
+
+      <p class="gift-hint" id="giftHint">tap the gift to open it ♡</p>
+
+      <div class="gift-message" id="giftMessage">
+        <p class="tiny-label">for Sunday, from Drew</p>
+        <h3>welcome to our little world, Sundrew ♡</h3>
+        <button class="pill-btn" id="enterWorldBtn">enter our story</button>
+      </div>
+    </div>
+  </section>
+
   <main id="main" class="main">
     <section class="scene hero reveal">
-      <div class="hero-copy">
-        <p class="tiny-label">for someone special</p>
-        <h2>for<br><span id="personName">you</span></h2>
-        <p>scroll pelan-pelan ya, ada beberapa memori kecil yang harus kamu buka.</p>
-        <button class="pill-btn" id="nameBtn">custom nama</button>
+      <div class="hero-main-wrap">
+        <div class="hero-copy">
+          <p class="tiny-label">for Sunday, from Drew</p>
+          <h2 class="sundrew-title">sun<br><span>drew</span></h2>
+          <p>scroll pelan-pelan ya, ada beberapa memori kecil yang harus kamu buka.</p>
+          <div class="couple-note">
+            <span>♡</span>
+            <p>two names, one tiny world.</p>
+          </div>
+        </div>
+
+        <!-- FOTO MAIN PAGE PALING ATAS: ganti src foto di bawah ini -->
+        <figure class="hero-photo-card">
+          <div class="manual-photo hero-main-photo">
+            <img src="assets/main-sundrew.jpg" alt="Sunday and Drew main photo" onerror="this.style.display='none'">
+            <span>add main photo</span>
+          </div>
+          <figcaption>Sunday + Drew = Sundrew</figcaption>
+        </figure>
       </div>
-      <div class="floating-lock">🔒</div>
+      <div class="floating-lock">♡</div>
     </section>
 
     <section class="scene music-scene reveal">
       <div class="music-card">
-        <div class="album"></div>
+        <!-- FOTO COVER MUSIK: ganti src foto di bawah ini -->
+        <div class="album">
+          <img src="assets/music-cover.jpg" alt="Music cover">
+        </div>
         <div class="track">
           <p class="tiny-label">now playing</p>
           <h3>3 Strikes</h3>
@@ -100,19 +171,31 @@
       </div>
       <div class="polaroids">
         <article class="polaroid r1">
-          <div class="photo placeholder one">foto 1</div>
+          <!-- FOTO MEMORY 1: ganti src foto di bawah ini -->
+          <div class="photo manual-photo">
+            <img src="assets/memory-1.jpg" alt="Sundrew memory 1" onerror="this.style.display='none'">
+            <span>add memory 1</span>
+          </div>
           <p>the softest day</p>
         </article>
         <article class="polaroid r2">
-          <div class="photo placeholder two">foto 2</div>
+          <!-- FOTO MEMORY 2: ganti src foto di bawah ini -->
+          <div class="photo manual-photo">
+            <img src="assets/memory-2.jpg" alt="Sundrew memory 2" onerror="this.style.display='none'">
+            <span>add memory 2</span>
+          </div>
           <p>little us</p>
         </article>
         <article class="polaroid r3">
-          <div class="photo placeholder three">foto 3</div>
+          <!-- FOTO MEMORY 3: ganti src foto di bawah ini -->
+          <div class="photo manual-photo">
+            <img src="assets/memory-3.jpg" alt="Sundrew memory 3" onerror="this.style.display='none'">
+            <span>add memory 3</span>
+          </div>
           <p>favorite smile</p>
         </article>
       </div>
-      <p class="caption">ganti tulisan “foto 1/2/3” pakai foto kalian nanti.</p>
+      <p class="caption">three little pieces of us, kept here forever.</p>
     </section>
 
     <section class="scene puzzle-scene reveal">
@@ -127,15 +210,26 @@
 
     <section class="scene map-scene reveal">
       <div class="map-card">
-        <p class="tiny-label">memory map</p>
-        <h2>where my heart goes</h2>
-        <div class="map-box">
-          <span class="pin a">♡</span>
-          <span class="pin b">♡</span>
-          <span class="pin c">♡</span>
-          <svg viewBox="0 0 420 230" preserveAspectRatio="none">
-            <path d="M40 170 C120 40, 210 210, 380 60" />
-          </svg>
+        <p class="tiny-label">counting day</p>
+        <h2>days we've been dating</h2>
+
+        <div class="dating-card">
+          <div class="calendar-visual">
+            <div class="calendar-top">
+              <span>JUNE</span>
+              <b>18</b>
+            </div>
+            <div class="calendar-bottom">
+              <span>our date</span>
+              <small>18 / 06 / 2026</small>
+            </div>
+          </div>
+
+          <div class="dating-copy">
+            <p class="dating-kicker">since our first day together ♡</p>
+            <h3><span id="datingDays">0</span> days</h3>
+            <p class="dating-desc">counting every soft little day since June 18, 2026.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -149,15 +243,6 @@
       </div>
     </section>
   </main>
-
-  <div class="name-modal" id="nameModal">
-    <div class="name-box">
-      <h3>nama pacar lu</h3>
-      <input id="nameInput" type="text" placeholder="contoh: jaja" />
-      <button id="saveName">save</button>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
