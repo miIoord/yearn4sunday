@@ -304,11 +304,17 @@ function unlockLetter(){
   btn.textContent = "open the letter";
 }
 
-const letterText = `aku bikin ini bukan karena aku paling jago bikin kata-kata, tapi karena aku pengen kamu punya satu tempat kecil yang isinya cuma tentang kamu.
+const letterText = `I’ve been thinking about you since last night, and I just hope you’re not being too hard on yourself right now. I know the way your mind works sometimes—you tend to carry things much longer than you should, and I wish I could be there to remind you that you don’t have to do that.
 
-kalau nanti harimu berat, buka ini lagi ya. inget kalau kamu pernah jadi alasan seseorang senyum cuma karena kamu ada.
+Please don’t let one difficult moment take away all the beautiful moments we’ve shared. There are so many things I adore about you—your patience, the way you listen to me, the way you care, and all the little things you do that make me feel loved every single day. Those are the things I think about when I think of you.
 
-thank you for being my favorite little daydream.`;
+I hope you know that you’ll never have to pretend to be perfect with me. I don’t expect perfection from you, because I love the real you—the one who’s learning, growing, trying, and doing his best every day. That’s the Sunday I chose, and that’s still the Sunday I love.
+
+So today, instead of replaying last night over and over in your head, I hope you’ll be a little gentler with yourself. You deserve the same kindness you always give to other people.
+
+I hope you eat well today, take a proper break when you need one, and remember that there’s someone here who’s always rooting for you, no matter what. Thank you for being you, and thank you for letting me be part of your life.
+
+I love you, always.`;
 
 document.getElementById("letterBtn").addEventListener("click", () => {
   const letter = document.getElementById("letter");
