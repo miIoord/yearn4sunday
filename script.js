@@ -163,10 +163,69 @@ function revealObserver(){
 }
 
 /* music fake interaction */
-let playing = false;
-document.getElementById("playBtn").addEventListener("click", e => {
-  playing = !playing;
-  e.currentTarget.textContent = playing ? "❚❚" : "▶";
+/* MUSIC PLAYER */
+
+const music = document.getElementById("bgMusic");
+const playBtn = document.getElementById("playBtn");
+const progress = document.getElementById("musicProgress");
+const progressBar = document.getElementById("musicProgressBar");
+
+/* PLAY / PAUSE */
+playBtn.addEventListener("click", async () => {
+
+  if (music.paused) {
+
+    try {
+      await music.play();
+      playBtn.textContent = "❚❚";
+      playBtn.setAttribute("aria-label", "pause music");
+    } catch (error) {
+      console.error("Music gagal diputar:", error);
+    }
+
+  } else {
+
+    music.pause();
+    playBtn.textContent = "▶";
+    playBtn.setAttribute("aria-label", "play music");
+
+  }
+
+});
+
+/* PROGRESS BAR JALAN SESUAI LAGU */
+music.addEventListener("timeupdate", () => {
+
+  if (!music.duration) return;
+
+  const percentage = (music.currentTime / music.duration) * 100;
+
+  progressBar.style.width = percentage + "%";
+
+});
+
+/* KLIK PROGRESS BAR BUAT PINDAH BAGIAN LAGU */
+progress.addEventListener("click", (event) => {
+
+  if (!music.duration) return;
+
+  const rect = progress.getBoundingClientRect();
+
+  const clickPosition =
+    (event.clientX - rect.left) / rect.width;
+
+  music.currentTime =
+    clickPosition * music.duration;
+
+});
+
+/* KALAU LAGU SELESAI */
+music.addEventListener("ended", () => {
+
+  playBtn.textContent = "▶";
+  playBtn.setAttribute("aria-label", "play music");
+  progressBar.style.width = "0%";
+
 });
 
 /* memory match game */
