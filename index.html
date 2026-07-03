@@ -33,7 +33,6 @@
       <figure class="opening-photo-card">
         <div class="manual-photo opening-photo">
           <img src="asssets/9066977841_106525193781380_1782061157274.png">
-          <span>add opening photo</span>
         </div>
         <figcaption>before our little story begins ♡</figcaption>
       </figure>
@@ -118,12 +117,11 @@
     <section class="scene hero reveal">
       <div class="hero-main-wrap">
         <div class="hero-copy">
-          <p class="tiny-label">for Sunday, from Drew</p>
+          <p class="tiny-label">dear sunday</p>
           <h2 class="sundrew-title">sun<br><span>drew</span></h2>
           <p>scroll pelan-pelan ya, ada beberapa memori kecil yang harus kamu buka.</p>
           <div class="couple-note">
-            <span>♡</span>
-            <p>two names, one tiny world.</p>
+            <p>sunday and drew in their orbit.</p>
           </div>
         </div>
 
@@ -138,23 +136,45 @@
       <div class="floating-lock">♡</div>
     </section>
 
-    <section class="scene music-scene reveal">
-      <div class="music-card">
-        <!-- FOTO COVER MUSIK: ganti src foto di bawah ini -->
-        <div class="album">
-          <img src="asssets/about you.jpg">
-        </div>
-        <div class="track">
-          <p class="tiny-label">now playing</p>
-          <h3>About You</h3>
-          <p>The 1975</p>
-          <div class="progress"><span></span></div>
-        </div>
-        <button class="play" id="playBtn" aria-label="play fake music">▶</button>
-      </div>
-      <p class="caption">we get married, in our head.</p>
-    </section>
+   <section class="scene music-scene reveal">
 
+  <div class="music-card">
+
+    <!-- FOTO COVER MUSIK: ganti src kalau nama fotonya beda -->
+    <div class="album">
+      <img src="assets/about you.jpg">
+    </div>
+
+    <div class="track">
+      <p class="tiny-label">now playing</p>
+      <h3>About You</h3>
+      <p>The 1975</p>
+
+      <div class="progress" id="musicProgress">
+        <span id="musicProgressBar"></span>
+      </div>
+    </div>
+
+    <button
+      class="play"
+      id="playBtn"
+      type="button"
+      aria-label="play music"
+    >
+      ▶
+    </button>
+
+  </div>
+
+  <!-- FILE MP3 -->
+  <audio id="bgMusic" preload="metadata">
+    <source src="assets/we get married.mp3" type="audio/mpeg">
+  </audio>
+
+  <p class="caption">we get married, in our head.</p>
+
+</section>
+    
     <section class="scene flower-scene reveal">
       <h2 class="script">a little flower for you</h2>
       <p class="wide-text">ada hari yang rasanya biasa aja, tapi tiba-tiba jadi bagus cuma karena kamu ada di situ.</p>
@@ -179,7 +199,7 @@
         <article class="polaroid r2">
           <!-- FOTO MEMORY 2: ganti src foto di bawah ini -->
           <div class="photo manual-photo">
-            <img src="asssets/9066977841_139966672310379_1782834210276.png'">
+            <img src="asssets/9066977841_139966672310379_1782834210276.png">
           </div>
           <p>little us</p>
         </article>
