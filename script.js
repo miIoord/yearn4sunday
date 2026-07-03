@@ -162,7 +162,6 @@ function revealObserver(){
   document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
 
-/* music fake interaction */
 /* MUSIC PLAYER */
 
 const music = document.getElementById("bgMusic");
@@ -170,11 +169,8 @@ const playBtn = document.getElementById("playBtn");
 const progress = document.getElementById("musicProgress");
 const progressBar = document.getElementById("musicProgressBar");
 
-/* PLAY / PAUSE */
 playBtn.addEventListener("click", async () => {
-
   if (music.paused) {
-
     try {
       await music.play();
       playBtn.textContent = "❚❚";
@@ -182,15 +178,36 @@ playBtn.addEventListener("click", async () => {
     } catch (error) {
       console.error("Music gagal diputar:", error);
     }
-
   } else {
-
     music.pause();
     playBtn.textContent = "▶";
     playBtn.setAttribute("aria-label", "play music");
-
   }
+});
 
+music.addEventListener("timeupdate", () => {
+  if (!music.duration) return;
+
+  const percentage =
+    (music.currentTime / music.duration) * 100;
+
+  progressBar.style.width = percentage + "%";
+});
+
+progress.addEventListener("click", (event) => {
+  if (!music.duration) return;
+
+  const rect = progress.getBoundingClientRect();
+  const position =
+    (event.clientX - rect.left) / rect.width;
+
+  music.currentTime = position * music.duration;
+});
+
+music.addEventListener("ended", () => {
+  playBtn.textContent = "▶";
+  playBtn.setAttribute("aria-label", "play music");
+  progressBar.style.width = "0%";
 });
 
 /* PROGRESS BAR JALAN SESUAI LAGU */
