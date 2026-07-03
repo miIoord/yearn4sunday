@@ -128,7 +128,7 @@ giftBox.addEventListener("click", () => {
   giftOpened = true;
 
   giftBox.classList.add("opened");
-  giftHint.textContent = "for Sunday, with all my love ♡";
+  giftHint.textContent = "made with love for the one i cherish.";
 
   setTimeout(() => {
     giftMessage.classList.add("open");
