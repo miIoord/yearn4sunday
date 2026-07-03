@@ -1,6 +1,6 @@
-const SECRET = "143";
+const SECRET = "1806";
 let typed = "";
-let found = [];
+let foundCount = 0;
 let matchedCount = 0;
 let firstCard = null;
 let lock = false;
@@ -8,18 +8,30 @@ let lock = false;
 const display = document.getElementById("display");
 const lockCard = document.getElementById("lockCard");
 const gate = document.getElementById("gate");
+const giftScene = document.getElementById("giftScene");
 const main = document.getElementById("main");
 const curtain = document.getElementById("curtain");
+const clueBox = document.getElementById("clueBox");
+const clueText = document.getElementById("clueText");
+const codeDots = Array.from(document.querySelectorAll("#codeDots span"));
 
-document.querySelectorAll(".hunt-heart").forEach(btn => {
+document.querySelectorAll(".hunt-heart").forEach((btn, index) => {
   btn.addEventListener("click", () => {
-    const n = btn.dataset.num;
-    if (!found.includes(n)) {
-      found.push(n);
-      const slot = document.getElementById(`hint${found.length}`);
-      slot.textContent = n;
-      btn.classList.add("collected");
-      softPop(slot);
+    if (btn.classList.contains("collected")) return;
+
+    btn.classList.add("collected");
+    foundCount++;
+
+    const progress = document.getElementById(`love${foundCount}`);
+    progress.textContent = "♥";
+    progress.classList.add("filled");
+    softPop(progress);
+
+    if (foundCount === 3) {
+      clueBox.classList.add("unlocked");
+      clueBox.querySelector(".clue-icon").textContent = "🔓";
+      clueText.textContent = "clue unlocked: the date we first started dating (DDMM)";
+      softPop(clueBox);
     }
   });
 });
@@ -30,6 +42,7 @@ document.querySelectorAll(".keypad button").forEach(btn => {
 
     if (key === "clear") {
       typed = "";
+      display.textContent = "enter 4 digits";
       updateDisplay();
       return;
     }
@@ -39,29 +52,37 @@ document.querySelectorAll(".keypad button").forEach(btn => {
       return;
     }
 
-    if (typed.length < 6) {
+    if (typed.length < 4) {
       typed += key;
+      display.textContent = typed.length === 4 ? "ready to unlock ♡" : `${4 - typed.length} digit${4 - typed.length === 1 ? "" : "s"} left`;
       updateDisplay();
     }
   });
 });
 
 function updateDisplay(){
-  display.textContent = typed ? "•".repeat(typed.length) : "code";
+  codeDots.forEach((dot, index) => {
+    dot.classList.toggle("filled", index < typed.length);
+  });
 }
 
 function tryUnlock(){
-  if (found.length < 3) {
-    fail("collect hearts first");
+  if (foundCount < 3) {
+    fail("collect 3 loves first");
+    return;
+  }
+
+  if (typed.length < 4) {
+    fail("enter all 4 digits");
     return;
   }
 
   if (typed === SECRET) {
-    unlockWorld();
+    unlockGift();
   } else {
     typed = "";
     updateDisplay();
-    fail("try again");
+    fail("wrong code — try the date we first started dating");
   }
 }
 
@@ -72,14 +93,14 @@ function fail(text){
   lockCard.classList.add("shake");
 }
 
-function unlockWorld(){
+function unlockGift(){
+  display.textContent = "unlocked ♡";
   curtain.classList.add("active");
 
   setTimeout(() => {
     gate.style.display = "none";
-    main.classList.add("open");
-    window.scrollTo(0,0);
-    revealObserver();
+    giftScene.classList.add("open");
+    giftScene.setAttribute("aria-hidden", "false");
   }, 850);
 
   setTimeout(() => {
@@ -95,6 +116,41 @@ function softPop(el){
   ], { duration:420, easing:"ease-out" });
 }
 
+/* gift opening */
+const giftBox = document.getElementById("giftBox");
+const giftHint = document.getElementById("giftHint");
+const giftMessage = document.getElementById("giftMessage");
+const enterWorldBtn = document.getElementById("enterWorldBtn");
+let giftOpened = false;
+
+giftBox.addEventListener("click", () => {
+  if (giftOpened) return;
+  giftOpened = true;
+
+  giftBox.classList.add("opened");
+  giftHint.textContent = "for Sunday, with all my love ♡";
+
+  setTimeout(() => {
+    giftMessage.classList.add("open");
+  }, 850);
+});
+
+enterWorldBtn.addEventListener("click", () => {
+  curtain.classList.add("active");
+
+  setTimeout(() => {
+    giftScene.classList.remove("open");
+    giftScene.setAttribute("aria-hidden", "true");
+    main.classList.add("open");
+    window.scrollTo(0,0);
+    revealObserver();
+  }, 850);
+
+  setTimeout(() => {
+    curtain.classList.remove("active");
+  }, 2500);
+});
+
 /* reveal animation */
 function revealObserver(){
   const observer = new IntersectionObserver(entries => {
@@ -105,27 +161,6 @@ function revealObserver(){
 
   document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
-
-/* name modal */
-const nameBtn = document.getElementById("nameBtn");
-const modal = document.getElementById("nameModal");
-const saveName = document.getElementById("saveName");
-
-nameBtn.addEventListener("click", () => {
-  modal.classList.add("open");
-});
-
-saveName.addEventListener("click", () => {
-  const value = document.getElementById("nameInput").value.trim();
-  if (value) {
-    document.getElementById("personName").textContent = value;
-  }
-  modal.classList.remove("open");
-});
-
-modal.addEventListener("click", e => {
-  if (e.target === modal) modal.classList.remove("open");
-});
 
 /* music fake interaction */
 let playing = false;
@@ -224,3 +259,20 @@ window.addEventListener("pointermove", e => {
     el.style.translate = `${x * (i+1) * .18}px ${y * (i+1) * .18}px`;
   });
 });
+
+
+/* counting days we've been dating */
+const DATING_START = "2026-06-18"; // ganti tahun kalau perlu, format: YYYY-MM-DD
+
+(function updateDatingDays(){
+  const el = document.getElementById("datingDays");
+  if(!el) return;
+
+  const start = new Date(DATING_START + "T00:00:00");
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const diff = today - start;
+  const days = Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+  el.textContent = days.toLocaleString("en-US");
+})();
